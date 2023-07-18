@@ -4,10 +4,12 @@
   "license": "SEE LICENSE IN <your-license-filename>",
   "repository": "<fill-your-repository-here>",
   "dependencies": {
-    "@nativescript/core": "file:../../node_modules/@nativescript/core"
+    "@nativescript/core": "file:../../node_modules/@nativescript/core",
+    "nativescript-cast": "file:../../packages/nativescript-cast"
   },
   "devDependencies": {
     "@nativescript/android": "~8.4.0",
-    "@nativescript/ios": "~8.4.0"
+    "@nativescript/ios": "~8.4.0",
+    "circular-dependency-plugin": "^5.2.2"
   }
 }

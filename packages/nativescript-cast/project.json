@@ -1,0 +1,65 @@
+{
+  "name": "nativescript-cast",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/nativescript-cast",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/packages/nativescript-cast",
+        "tsConfig": "packages/nativescript-cast/tsconfig.json",
+        "packageJson": "packages/nativescript-cast/package.json",
+        "main": "packages/nativescript-cast/index.d.ts",
+        "assets": [
+          "packages/nativescript-cast/*.md",
+          "packages/nativescript-cast/index.d.ts",
+          "LICENSE",
+          {
+            "glob": "**/*",
+            "input": "packages/nativescript-cast/platforms/",
+            "output": "./platforms/"
+          }
+        ],
+        "dependsOn": [
+          {
+            "target": "build.all",
+            "projects": "dependencies"
+          }
+        ]
+      }
+    },
+    "build.all": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["node tools/scripts/build-finish.ts nativescript-cast"],
+        "parallel": false
+      },
+      "outputs": ["dist/packages/nativescript-cast"],
+      "dependsOn": [
+        {
+          "target": "build.all",
+          "projects": "dependencies"
+        },
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ]
+    },
+    "focus": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["nx g @nativescript/plugin-tools:focus-packages nativescript-cast"],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["packages/nativescript-cast/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}

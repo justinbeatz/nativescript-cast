@@ -55,12 +55,19 @@ module.exports = {
       },
     },
     '⚙️': {
-      script: `npx cowsay "@nativescript/* packages will keep your ⚙️ cranking"`,
-      description: '_____________  @nativescript/*  _____________',
+      script: `npx cowsay "@lightcast/* packages will keep your ⚙️ cranking"`,
+      description: '_____________  @lightcast/*  _____________',
     },
     // packages
     // build output is always in dist/packages
-    '@nativescript': {
+    '@lightcast': {
+      // nativescript-cast
+      'nativescript-cast': {
+        build: {
+          script: 'nx run nativescript-cast:build.all',
+          description: 'nativescript-cast: Build',
+        },
+      },
       'build-all': {
         script: 'nx run-many --target=build.all --all',
         description: 'Build all packages',
@@ -71,8 +78,12 @@ module.exports = {
       description: '_____________  Focus (VS Code supported)  _____________',
     },
     focus: {
+      'nativescript-cast': {
+        script: 'nx run nativescript-cast:focus',
+        description: 'Focus on nativescript-cast',
+      },
       reset: {
-        script: 'nx g @nativescript/plugin-tools:focus-packages',
+        script: 'nx g @lightcast/plugin-tools:focus-packages',
         description: 'Reset Focus',
       },
     },
